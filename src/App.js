@@ -1,32 +1,44 @@
-
 // import "./App.css";
-import React from "react";
+import React, { useState } from "react";
 import Logo from "./Logo.js";
-import BestPokemon  from "./BestPokemon.js";
+import BestPokemon from "./BestPokemon.js";
 import CaughtPokemon from "./CaughtPokemon.js";
+import PokemonNames from "./PokemonNames.json";
 //import ReactDOM from "react-dom";
 
 function App() {
+  const [caught, setCaught] = useState([]);
+
+   function catchPokemon() {
+     setCaught(
+       caught.concat(
+         PokemonNames[Math.floor(Math.random() * PokemonNames.length)]
+       )
+     );
+   }
+  // function catchPokemon() {
+  //   setCount((c1) => {
+  //     return c1 + 1;
+  //   });
+
   return (
     <div className="App">
-      <Logo appName={"Pokedex"} />
-      <BestPokemon/>
-      <CaughtPokemon date = {new Date().toLocaleDateString()} />
+      <Logo appName={"Pokedex"} func={catchPokemon} />
+      <BestPokemon />
+      <CaughtPokemon
+        date={new Date().toLocaleDateString()}
+        func={catchPokemon}
+        caught={caught}
+      />
     </div>
   );
 }
 
 export default App;
 
-// Using the pokedex React app that you created earlier, open the App.js file.
-// Pass a prop appName="Pokedex" to the Logo component.
-// Now open the Logo.js file.
-// Delete the appName variable. What do you see in your web browser? Why?
-// Change the Logo function to access the first argument and call it props. Use console.log to inspect the props variable.
-// Change the usage of appName in the <h1> to be props.appName instead. Does this fix the problem? Why?
-// Now open the BestPokemon.js file.
-// Copy the abilities variable and then delete it from BestPokemon.js.
-// Paste the abilities variable into App.js.
-// Pass the abilities variable as a prop to BestPokemon from App.js.
-// In the BestPokemon.js file replace the existing usage of abilities with the abilities prop. You should still see the Pokemon ability names in your web browser.
-// (STRETCH GOAL) Repeat the process with the date variable in the CaughtPokemon.js file.
+// Open the pokedex React application and open the CaughtPokemon.js file.
+// Change the useState to be initialised to an empty array ([])
+// There will now be a bug in your app! We don't see how many Pokemon we have caught. Discuss with another trainee what you think the problem is.
+// Change the JSX to instead render caught.length. Does this fix the bug?
+// Let's now show the names of the Pokemon we have caught. Render a <ul> element within the component. Then use the map method to loop through each item in the caught array and render it in an <li> element.
+// Change the catchPokemon function to add a new Pokemon (it doesn't matter which one) onto the caught array. (Hint: use the concat method.)
