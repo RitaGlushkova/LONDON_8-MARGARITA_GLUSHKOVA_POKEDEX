@@ -4,6 +4,8 @@ import Logo from "./Logo.js";
 import BestPokemon from "./BestPokemon.js";
 import CaughtPokemon from "./CaughtPokemon.js";
 import PokemonNames from "./PokemonNames.json";
+import PokemonMovesSelector from "./PokemonMovesSelector.js";
+import PokemonCity from "./PokemonCity.js";
 //import ReactDOM from "react-dom";
 
 function App() {
@@ -16,10 +18,7 @@ function App() {
        )
      );
    }
-  // function catchPokemon() {
-  //   setCount((c1) => {
-  //     return c1 + 1;
-  //   });
+
 
   return (
     <div className="App">
@@ -30,6 +29,8 @@ function App() {
         func={catchPokemon}
         caught={caught}
       />
+      <PokemonMovesSelector />
+      <PokemonCity />
     </div>
   );
 }
